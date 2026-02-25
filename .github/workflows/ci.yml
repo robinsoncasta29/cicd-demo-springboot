@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Build with MavenD
+      - name: Build with Maven
         run: mvn clean package -DskipTests
 
 
@@ -43,20 +43,3 @@ jobs:
 
       - name: Run Tests
         run: mvn test
-
-      - name: Upload Surefire Reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: test-reports
-          path: target/surefire-reports/
-
-      - name: Run Tests with Coverage
-        run: mvn verify
-
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: target/site/jacoco/
-          retention-days: 7
